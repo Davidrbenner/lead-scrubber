@@ -1,0 +1,25 @@
+# Example scrub config. Paths are relative to this file.
+# Run: leadscrub run examples/leads.csv -c examples/config.toml --as-of 2026-10-01
+
+mode = "phone"            # "phone" for dialing lists, "email" for email campaigns
+
+[columns]                 # leave out to auto-detect
+phone = "Phone"
+email = "Email"
+state = "State"
+
+[suppression]
+dnc = ["dnc.txt"]
+opt_out = ["opt_out.csv"]
+customers = ["customers.csv"]
+
+[recent_contact]
+log = ["contact_log.csv"]
+days = 30
+
+[states]
+exclude = ["TX", "FL"]
+
+[options]
+allow_fictional = true    # sample data uses 555-01XX numbers; keep false for real lists
+add_normalized = true     # add phone_e164 and email_normalized columns to clean.csv
